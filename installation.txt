@@ -1,0 +1,50 @@
+1. Download Scipy Stack:
+
+	sudo apt-get update
+	sudo apt-get upgrade   
+
+	sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+
+2. Download opencv:
+
+	# install basic development environment
+   	sudo apt-get install build-essential cmake pkg-config
+
+ 	# install opencv dependencies. ubuntu 13.04 ships with opencv
+ 	# 2.4.2, which is close enough to 2.4.6 to pull in most of the
+	# needed dependencies.
+	sudo apt-get build-dep libopencv-dev
+
+	# additional dependencies for java support
+	sudo apt-get install default-jdk ant
+
+	# for opengl support
+	sudo apt-get install libgtkglext1-dev
+
+	# compile opencv
+	tar xzvf opencv-2.4.6.1.tar.gz
+	cd opencv-2.4.6.1
+	mkdir build
+	cd build
+	cmake -D CMAKE_BUILD_TYPE=RELEASE -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON -D WITH_QT=ON 
+	-D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_OPENGL=ON -D WITH_V4L=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_TBB=ON ..
+	make
+	sudo make install
+
+
+	sudo nano /etc/ld.so.conf.d/opencv.conf
+	/usr/local/lib
+	sudo ldconfig
+	sudo nano /etc/bash.bashrc
+	PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+	export PKG_CONFIG_PATH
+
+	cd ~/OpenCV-2.4.6/samples/c
+	chmod +x build_all.sh
+	./build_all.sh
+	
+	try the examples and make sure they work
+		
+	python ~/OpenCV-2.4.1/samples/python2/turing.py
+	
+3. 
