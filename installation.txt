@@ -1,50 +1,73 @@
+Tutorial on how to install OpenCV on 64bit Linux Ubuntu 13.04 . One of many tutorials to come.
+
+OpenCV was designed for computational efficiency and with a strong focus on real-time applications. Written in optimized C/C++, the library can take advantage of multi-core processing. Adopted all around the world, OpenCV has more than 47 thousand people in their user community and estimated number of downloads exceeding 6 million. Usage ranges from interactive art, to mines inspection, stitching maps on the web or through advanced robotics.
+
+Source Code Steps For Installation
 1. Download Scipy Stack:
 
-	sudo apt-get update
-	sudo apt-get upgrade   
+ 	sudo apt-get update
+ 	sudo apt-get upgrade   
 
-	sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+	sudo apt-get install python-numpy python-scipy python-matplotlib ipython 
+        ipython-  notebook python-pandas python-sympy python-nose
 
 2. Download opencv:
 
 	# install basic development environment
-   	sudo apt-get install build-essential cmake pkg-config
+ 
+	sudo apt-get install build-essential cmake pkg-config
 
- 	# install opencv dependencies. ubuntu 13.04 ships with opencv
- 	# 2.4.2, which is close enough to 2.4.6 to pull in most of the
-	# needed dependencies.
-	sudo apt-get build-dep libopencv-dev
+	# install opencv dependencies. ubuntu 13.04 ships with opencv
+  	# 2.4.2, which is close enough to 2.4.6 to pull in most of the
+	# needed dependencies. If you still need the source code to get it,  try to download it and extract it by
+	 following the following link:
+	 
+	wget http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.6/OpenCV-2.4.6.tar.bz2
 
-	# additional dependencies for java support
-	sudo apt-get install default-jdk ant
+ 	sudo apt-get build-dep libopencv-dev
 
-	# for opengl support
+ 	# additional dependencies for java support
+
+ 	sudo apt-get install default-jdk ant
+
+ 	# for opengl support
+
 	sudo apt-get install libgtkglext1-dev
 
 	# compile opencv
-	tar xzvf opencv-2.4.6.1.tar.gz
+
+ 	tar xzvf opencv-2.4.6.1.tar.gz
 	cd opencv-2.4.6.1
 	mkdir build
 	cd build
-	cmake -D CMAKE_BUILD_TYPE=RELEASE -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON -D WITH_QT=ON 
-	-D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_OPENGL=ON -D WITH_V4L=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_TBB=ON ..
+	cmake -D CMAKE_BUILD_TYPE=RELEASE -D INSTALL_C_EXAMPLES=ON  
+        -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON 
+        -D WITH_QT=ON -D CMAKE_INSTALL_PREFIX=/usr/local 
+        -D WITH_OPENGL=ON -D WITH_V4L=ON 
+        -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_TBB=ON ..
+
 	make
 	sudo make install
 
 
-	sudo nano /etc/ld.so.conf.d/opencv.conf
-	/usr/local/lib
-	sudo ldconfig
+ 	sudo nano /etc/ld.so.conf.d/opencv.conf
+ 	/usr/local/lib
+ 	sudo ldconfig
 	sudo nano /etc/bash.bashrc
-	PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+ 	PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 	export PKG_CONFIG_PATH
 
 	cd ~/OpenCV-2.4.6/samples/c
 	chmod +x build_all.sh
 	./build_all.sh
-	
-	try the examples and make sure they work
-		
-	python ~/OpenCV-2.4.1/samples/python2/turing.py
-	
+ 
+	#try the examples and make sure they work
+  
+	python ~/OpenCV-2.4.6/samples/python2/turing.py
 
+	Link for people that are having problems with the different versions of Ubuntu: http://answers.opencv.org/question/18226/opencv-java-build-error-in-ubuntu-1304/ 
+
+	Source Code For Future Tutorials - my dropbox account
+	My Twitter https://twitter.com/Cesco345
+	
+	
