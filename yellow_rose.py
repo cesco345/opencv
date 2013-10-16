@@ -17,6 +17,7 @@ cv.DestroyWindow("Rose")
 
 ___________________________________________________________________________
 
+
 resized_yellow.py
 
 from PIL import Image
